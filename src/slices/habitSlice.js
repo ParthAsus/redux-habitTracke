@@ -29,9 +29,16 @@ export const habitSlice = createSlice({
       }
     },
 
+    removeHabit: (state, action) => {
+      const initialHabitLength = state.habits.length;
+      state.habits = state.habits.filter((h) => h.id !== action.payload.habitId);
+      if(initialHabitLength === state.habits.length){
+        console.log('Habit not found');
+      }
+    }
   },
 });
 
-export const {addHabit, toggleHabit} = habitSlice.actions;
+export const {addHabit, toggleHabit, removeHabit} = habitSlice.actions;
 
 export default habitSlice.reducer;
